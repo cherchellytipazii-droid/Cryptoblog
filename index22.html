@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<meta content='width=device-width, initial-scale=1' name='viewport'/>
+<meta charset='UTF-8'/>
+<title><data:blog.pageTitle/></title>
+<b:include data='blog' name='all-head-content'/>
+
+<b:skin><![CDATA[
+
+:root{
+  --bg:#0B0E11;
+  --bg-raised:#12161C;
+  --bg-card:#161B22;
+  --line:rgba(255,255,255,0.08);
+  --text:#E9E7E1;
+  --text-dim:#93A0AC;
+  --accent:#F2A93C;
+  --accent-deep:#C4771A;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  line-height:1.6;
+  font-size:16px;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+
+h1,h2,h3,.brand-name{
+  font-family:'Space Grotesk','Segoe UI',Arial,sans-serif;
+  font-weight:700;
+  letter-spacing:-0.01em;
+}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+/* utility bar */
+.util-bar{
+  border-bottom:1px solid var(--line);
+  background:var(--bg-raised);
+}
+.util-bar .wrap{
+  display:flex;justify-content:flex-end;align-items:center;
+  height:38px;gap:4px;
+}
+.lang-switch{display:flex;gap:2px;}
+.lang-switch button{
+  background:transparent;border:none;color:var(--text-dim);
+  font-size:0.78rem;padding:6px 9px;border-radius:3px;cursor:pointer;
+  font-family:inherit;
+}
+.lang-switch button.active{color:var(--accent);background:rgba(242,169,60,0.1);}
+.lang-switch button:hover{color:var(--text);}
+
+/* header */
+header.site-header{
+  padding:26px 0 20px;
+  border-bottom:1px solid var(--line);
+}
+.header-row{display:flex;align-items:center;gap:14px;}
+.coin-sticker{width:46px;height:46px;flex:0 0 auto;}
+.brand-block{flex:1;min-width:0;}
+.brand-name{font-size:1.3rem;color:var(--text);}
+.brand-name a{display:block;}
+.brand-tagline{
+  font-size:0.85rem;color:var(--text-dim);margin-top:2px;
+}
+
+/* nav */
+nav.main-nav{
+  border-bottom:1px solid var(--line);
+  background:var(--bg-raised);
+}
+nav.main-nav ul{
+  list-style:none;margin:0;padding:0;
+  display:flex;gap:6px;flex-wrap:wrap;
+}
+nav.main-nav a{
+  display:block;padding:14px 4px;
+  font-size:0.92rem;color:var(--text-dim);
+  border-bottom:2px solid transparent;
+}
+nav.main-nav li{margin-inline-end:22px;}
+nav.main-nav a:hover{color:var(--text);}
+nav.main-nav li.selected a{
+  color:var(--accent);border-bottom-color:var(--accent);
+}
+
+/* main / post list */
+main{padding:44px 0 60px;min-height:40vh;}
+
+.empty-state{
+  border:1px dashed var(--line);
+  border-radius:6px;
+  padding:40px 28px;
+  text-align:center;
+  color:var(--text-dim);
+}
+.empty-state strong{display:block;color:var(--text);font-size:1.05rem;margin-bottom:8px;}
+
+.post-card{
+  border-bottom:1px solid var(--line);
+  padding:26px 0;
+}
+.post-card:first-child{padding-top:0;}
+.post-title{font-size:1.28rem;margin:0 0 6px;}
+.post-title a:hover{color:var(--accent);}
+.post-meta{font-size:0.8rem;color:var(--text-dim);margin-bottom:10px;}
+.post-snippet{color:var(--text-dim);font-size:0.96rem;}
+.post-snippet img{display:none;}
+.read-more{
+  display:inline-block;margin-top:12px;font-size:0.85rem;
+  color:var(--accent);
+}
+
+.pager{
+  display:flex;justify-content:space-between;
+  margin-top:34px;padding-top:20px;border-top:1px solid var(--line);
+  font-size:0.9rem;
+}
+.pager a{color:var(--accent);}
+.pager span{color:var(--text-dim);}
+
+/* footer */
+footer.site-footer{
+  border-top:1px solid var(--line);
+  background:var(--bg-raised);
+  padding:22px 0;
+}
+footer.site-footer .wrap{
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:10px;
+  font-size:0.82rem;color:var(--text-dim);
+}
+
+/* rtl (arabic) */
+html[dir='rtl'] body{
+  font-family:'Segoe UI',Tahoma,Arial,sans-serif;
+}
+html[dir='rtl'] nav.main-nav li{margin-inline-end:0;margin-inline-start:22px;}
+
+@media (max-width:640px){
+  h1{font-size:1.5rem;}
+  .brand-name{font-size:1.1rem;}
+  nav.main-nav ul{gap:0;}
+  nav.main-nav li{margin-inline-end:14px;}
+  .util-bar .wrap{height:34px;}
+}
+
+]]></b:skin>
+</head>
+
+<body>
+
+<div class='util-bar'>
+  <div class='wrap'>
+    <div class='lang-switch' id='langSwitch'>
+      <button data-lang='ru' type='button'>RU</button>
+      <button data-lang='en' type='button'>EN</button>
+      <button data-lang='ar' type='button'>AR</button>
+    </div>
+  </div>
+</div>
+
+<header class='site-header'>
+  <div class='wrap header-row'>
+    <svg class='coin-sticker' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'>
+      <defs>
+        <radialGradient id='coinFace' cx='35%' cy='30%' r='75%'>
+          <stop offset='0%' stop-color='#FFD98A'/>
+          <stop offset='55%' stop-color='#F2A93C'/>
+          <stop offset='100%' stop-color='#C4771A'/>
+        </radialGradient>
+        <linearGradient id='coinRim' x1='0' y1='0' x2='1' y2='1'>
+          <stop offset='0%' stop-color='#8C4A20'/>
+          <stop offset='100%' stop-color='#5C2E10'/>
+        </linearGradient>
+      </defs>
+      <circle cx='100' cy='100' r='92' fill='url(#coinRim)'/>
+      <circle cx='100' cy='100' r='82' fill='url(#coinFace)'/>
+      <circle cx='100' cy='100' r='82' fill='none' stroke='#FFE6B0' stroke-width='2' stroke-opacity='0.5'/>
+      <text x='100' y='138' text-anchor='middle' font-family='Arial,sans-serif' font-weight='700' font-size='104' fill='#3A1E0D'>&#8383;</text>
+    </svg>
+    <div class='brand-block'>
+      <h1 class='brand-name'>
+        <a expr:href='data:blog.homepageUrl'><data:blog.title/></a>
+      </h1>
+      <div class='brand-tagline' data-i18n='tagline'>Инструменты и обзоры по криптовалютам</div>
+    </div>
+  </div>
+</header>
+
+<nav class='main-nav'>
+  <div class='wrap'>
+    <b:section id='navigation' showaddelement='yes' maxwidgets='1'>
+      <b:widget id='PageList1' locked='false' title='' type='PageList' version='1'>
+        <b:includable id='main'>
+          <ul>
+            <li class='selected'><a data-i18n='nav_home' expr:href='data:blog.homepageUrl'>Главная</a></li>
+            <b:loop values='data:links' var='link'>
+              <li><a expr:href='data:link.href'><data:link.title/></a></li>
+            </b:loop>
+          </ul>
+        </b:includable>
+      </b:widget>
+    </b:section>
+  </div>
+</nav>
+
+<main>
+  <div class='wrap'>
+    <b:section id='main-content' showaddelement='no' maxwidgets='1'>
+      <b:widget id='Blog1' locked='true' title='Blog' type='Blog' version='2'>
+        <b:includable id='main' var='top'>
+          <div class='blog-posts'>
+            <b:loop values='data:top.posts' var='post'>
+              <b:include data='post' name='post'/>
+            </b:loop>
+
+            <b:if cond='data:top.posts.size == 0'>
+              <div class='empty-state'>
+                <strong data-i18n='empty_title'>Здесь пока нет страниц</strong>
+                <span data-i18n='empty_text'>Создайте страницы для ваших инструментов и обзоров — они появятся в меню и здесь.</span>
+              </div>
+            </b:if>
+
+            <div class='pager'>
+              <span>
+                <b:if cond='data:top.olderPageUrl'>
+                  <a data-i18n='pager_older' expr:href='data:top.olderPageUrl'>Старые записи</a>
+                </b:if>
+              </span>
+              <span>
+                <b:if cond='data:top.newerPageUrl'>
+                  <a data-i18n='pager_newer' expr:href='data:top.newerPageUrl'>Новые записи</a>
+                </b:if>
+              </span>
+            </div>
+          </div>
+        </b:includable>
+
+        <b:includable id='post' var='post'>
+          <article class='post-card'>
+            <h2 class='post-title'>
+              <a expr:href='data:post.url'><data:post.title/></a>
+            </h2>
+            <div class='post-meta'>
+              <data:post.dateHeader/>
+            </div>
+            <div class='post-snippet'>
+              <data:post.snippet/>
+            </div>
+            <a class='read-more' data-i18n='read_more' expr:href='data:post.url'>Читать далее →</a>
+          </article>
+        </b:includable>
+      </b:widget>
+    </b:section>
+  </div>
+</main>
+
+<footer class='site-footer'>
+  <div class='wrap'>
+    <span>&#169; <data:blog.title/></span>
+    <span data-i18n='footer_note'>Работает на Blogger</span>
+  </div>
+  <div class='wrap'>
+    <b:section id='footer' showaddelement='yes' maxwidgets='2'/>
+  </div>
+</footer>
+
+<script type='text/javascript'>
+//<![CDATA[
+(function(){
+  var dict = {
+    ru: {
+      tagline: 'Инструменты и обзоры по криптовалютам',
+      nav_home: 'Главная',
+      empty_title: 'Здесь пока нет страниц',
+      empty_text: 'Создайте страницы для ваших инструментов и обзоров — они появятся в меню и здесь.',
+      pager_older: 'Старые записи',
+      pager_newer: 'Новые записи',
+      read_more: 'Читать далее →',
+      footer_note: 'Работает на Blogger'
+    },
+    en: {
+      tagline: 'Crypto tools and reviews',
+      nav_home: 'Home',
+      empty_title: 'No pages yet',
+      empty_text: 'Create pages for your tools and reviews — they will show up in the menu and here.',
+      pager_older: 'Older posts',
+      pager_newer: 'Newer posts',
+      read_more: 'Read more →',
+      footer_note: 'Powered by Blogger'
+    },
+    ar: {
+      tagline: 'أدوات ومراجعات العملات الرقمية',
+      nav_home: 'الرئيسية',
+      empty_title: 'لا توجد صفحات بعد',
+      empty_text: 'أنشئ صفحات لأدواتك ومراجعاتك — ستظهر في القائمة وهنا.',
+      pager_older: 'مقالات أقدم',
+      pager_newer: 'مقالات أحدث',
+      read_more: 'اقرأ المزيد ←',
+      footer_note: 'يعمل بواسطة Blogger'
+    }
+  };
+
+  function applyLang(lang){
+    if(!dict[lang]) lang = 'ru';
+    var d = dict[lang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(d[key]) el.textContent = d[key];
+    });
+    document.documentElement.setAttribute('lang', lang);
+    document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    document.querySelectorAll('#langSwitch button').forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    try{ localStorage.setItem('site_lang', lang); }catch(e){}
+  }
+
+  document.querySelectorAll('#langSwitch button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      applyLang(btn.getAttribute('data-lang'));
+    });
+  });
+
+  var saved = 'ru';
+  try{ saved = localStorage.getItem('site_lang') || 'ru'; }catch(e){}
+  applyLang(saved);
+})();
+//]]>
+</script>
+
+</body>
+</html>
