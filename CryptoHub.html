@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CryptoHub — Faucets, Exchanges, Wallets & Mining</title>
+<style>
+:root{--bg:#f6f7fb;--bg2:#fff;--tx:#0e1330;--mu:#5b6384;--bd:#e3e6f2;--ac:#6d5efc;--ac2:#00c2ff;--sh:0 10px 30px rgba(30,40,90,.08);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070a1a;--bg2:#10142b;--tx:#eef0ff;--mu:#9aa3c7;--bd:#222850;--sh:0 10px 30px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg:#070a1a;--bg2:#10142b;--tx:#eef0ff;--mu:#9aa3c7;--bd:#222850;--sh:0 10px 30px rgba(0,0,0,.4)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.w{max-width:1160px;margin:auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--bd)}
+nav .w{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.logo{font-weight:800;font-size:20px;letter-spacing:-.5px;display:flex;gap:8px;align-items:center;color:var(--tx);text-decoration:none}
+.logo i{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--ac),var(--ac2));display:grid;place-items:center;color:#fff;font-style:normal;font-size:16px}
+.links{display:flex;gap:20px}.links a{color:var(--mu);text-decoration:none;font-size:14px;font-weight:600}.links a:hover{color:var(--tx)}
+.lang{display:flex;background:var(--bg2);border:1px solid var(--bd);border-radius:999px;padding:3px}
+.lang button{border:0;background:none;color:var(--mu);font-weight:700;font-size:12px;padding:6px 11px;border-radius:999px;cursor:pointer}
+.lang button.on{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff}
+.hero{position:relative;overflow:hidden;padding:84px 0 70px;text-align:center}
+.hero::before,.hero::after{content:"";position:absolute;width:520px;height:520px;border-radius:50%;filter:blur(90px);opacity:.35;z-index:-1;animation:fl 12s ease-in-out infinite alternate}
+.hero::before{background:var(--ac);left:-120px;top:-160px}.hero::after{background:var(--ac2);right:-140px;top:-60px;animation-delay:-6s}
+@keyframes fl{to{transform:translate(60px,50px) scale(1.15)}}
+.badge{display:inline-block;padding:6px 14px;border:1px solid var(--bd);background:var(--bg2);border-radius:999px;font-size:13px;color:var(--mu);font-weight:600}
+h1{font-size:clamp(34px,6vw,64px);line-height:1.08;margin:18px auto 16px;max-width:820px;letter-spacing:-1.5px}
+h1 span{background:linear-gradient(135deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--mu);max-width:620px;margin:0 auto 30px;font-size:18px}
+.search{max-width:520px;margin:auto;position:relative}
+.search input{width:100%;padding:15px 20px;border-radius:999px;border:1px solid var(--bd);background:var(--bg2);color:var(--tx);font-size:16px;box-shadow:var(--sh);outline:none}
+.search input:focus{border-color:var(--ac)}
+.stats{display:flex;justify-content:center;gap:clamp(24px,6vw,64px);margin-top:44px;flex-wrap:wrap}
+.stats b{display:block;font-size:34px;letter-spacing:-1px}.stats small{color:var(--mu);font-size:13px}
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:10px 0 70px}
+.cat{background:var(--bg2);border:1px solid var(--bd);border-radius:20px;padding:22px;cursor:pointer;transition:.25s;text-align:left;color:var(--tx);font:inherit}
+.cat:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:var(--ac)}
+.cat svg{width:44px;height:44px;padding:10px;border-radius:13px;color:#fff;margin-bottom:12px}
+.cat h3{margin:0 0 4px;font-size:18px}.cat p{margin:0;color:var(--mu);font-size:14px}
+h2{font-size:clamp(26px,4vw,38px);letter-spacing:-1px;margin:0 0 8px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 28px}
+.tabs button{border:1px solid var(--bd);background:var(--bg2);color:var(--mu);padding:9px 18px;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer}
+.tabs button.on{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px}
+.card{background:var(--bg2);border:1px solid var(--bd);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+.card:hover{transform:translateY(-5px);box-shadow:var(--sh)}
+.card svg.art{display:block;width:100%;height:auto}
+.cb{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.tag{font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--ac)}
+.cb h3{margin:0;font-size:20px}.cb p{margin:0;color:var(--mu);font-size:14.5px;flex:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 16px;border-radius:12px;background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;font-weight:700;text-decoration:none;font-size:14px}
+.btn:hover{filter:brightness(1.08)}
+section{padding:60px 0}
+.safe{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:24px}
+.safe div{background:var(--bg2);border:1px solid var(--bd);border-radius:18px;padding:22px}
+.safe b{display:block;margin-bottom:6px;font-size:17px}.safe span{color:var(--mu);font-size:14.5px}
+.none{color:var(--mu);padding:30px 0}
+footer{border-top:1px solid var(--bd);padding:36px 0 44px;color:var(--mu);font-size:13px;text-align:center}
+footer p{max-width:760px;margin:8px auto}
+@media(max-width:720px){.links{display:none}}
+</style></head><body>
+<nav><div class="w"><a class="logo" href="#top"><i>₿</i>CryptoHub</a>
+<div class="links"><a href="#dir" data-t="nav1"></a><a href="#safe" data-t="nav2"></a></div>
+<div class="lang" id="lang"><button data-l="en">EN</button><button data-l="fr">FR</button><button data-l="ru">RU</button></div></div></nav>
+<header class="hero" id="top"><div class="w">
+<span class="badge" data-t="badge"></span>
+<h1 data-h="title"></h1>
+<p class="sub" data-t="sub"></p>
+<div class="search"><input id="q" type="search" autocomplete="off"></div>
+<div class="stats"><div><b id="s1">20</b><small data-t="st1"></small></div><div><b>4</b><small data-t="st2"></small></div><div><b>3</b><small data-t="st3"></small></div></div>
+</div></header>
+<main class="w">
+<div class="cats" id="cats"></div>
+<section id="dir" style="padding-top:0"><h2 data-t="dirT"></h2><div class="tabs" id="tabs"></div><div class="grid" id="grid"></div></section>
+<section id="safe"><h2 data-t="safeT"></h2><div class="safe" id="safeG"></div></section>
+</main>
+<footer><div class="w"><b>CryptoHub</b><p data-t="disc"></p><p>© 2026 CryptoHub</p></div></footer>
+<script>
+var T={
+en:{nav1:"Directory",nav2:"Safety",badge:"✦ Curated crypto directory",title:"Discover the best <span>crypto platforms</span> in one place",sub:"Faucets, exchanges, wallets and mining pools — explained clearly, so you can choose with confidence.",ph:"Search platforms…",st1:"Platforms",st2:"Categories",st3:"Languages",all:"All",dirT:"Explore the directory",safeT:"Stay safe in crypto",visit:"Visit website",none:"No results found.",
+cat:{f:["Faucets","Earn small amounts of free crypto"],e:["Exchanges","Buy, sell and trade assets"],w:["Wallets","Store and control your coins"],m:["Mining","Pools and hashpower markets"]},
+sf:[["Verify the URL","Always type or bookmark official addresses; phishing clones are common."],["Enable 2FA","Use an authenticator app and never share seed phrases with anyone."],["Do your own research","Rules and availability vary by country. This is not financial advice."]],
+disc:"CryptoHub is an informational directory. Listings are not endorsements or financial advice. Crypto is volatile and risky — verify each platform and local regulations before use."},
+fr:{nav1:"Annuaire",nav2:"Sécurité",badge:"✦ Annuaire crypto sélectionné",title:"Découvrez les meilleures <span>plateformes crypto</span> au même endroit",sub:"Faucets, plateformes d’échange, portefeuilles et pools de minage — expliqués clairement pour choisir en confiance.",ph:"Rechercher une plateforme…",st1:"Plateformes",st2:"Catégories",st3:"Langues",all:"Tout",dirT:"Explorer l’annuaire",safeT:"Restez en sécurité",visit:"Visiter le site",none:"Aucun résultat.",
+cat:{f:["Faucets","Gagnez de petites sommes en crypto gratuite"],e:["Plateformes d’échange","Achetez, vendez et tradez"],w:["Portefeuilles","Stockez et contrôlez vos cryptos"],m:["Minage","Pools et marchés de hashrate"]},
+sf:[["Vérifiez l’URL","Saisissez ou enregistrez toujours les adresses officielles ; les clones de phishing sont fréquents."],["Activez la 2FA","Utilisez une application d’authentification et ne partagez jamais votre phrase de récupération."],["Faites vos recherches","Règles et disponibilité varient selon les pays. Ceci n’est pas un conseil financier."]],
+disc:"CryptoHub est un annuaire informatif. Les listes ne constituent ni une recommandation ni un conseil financier. Les cryptos sont volatiles et risquées — vérifiez chaque plateforme et la réglementation locale."},
+ru:{nav1:"Каталог",nav2:"Безопасность",badge:"✦ Отобранный крипто-каталог",title:"Лучшие <span>криптоплатформы</span> в одном месте",sub:"Краны, биржи, кошельки и майнинг-пулы — понятные описания, чтобы выбирать уверенно.",ph:"Поиск платформ…",st1:"Платформ",st2:"Категории",st3:"Языка",all:"Все",dirT:"Изучите каталог",safeT:"Безопасность в крипте",visit:"Перейти на сайт",none:"Ничего не найдено.",
+cat:{f:["Краны","Небольшой бесплатный заработок в крипте"],e:["Биржи","Покупка, продажа и трейдинг"],w:["Кошельки","Храните и контролируйте свои монеты"],m:["Майнинг","Пулы и рынки хешрейта"]},
+sf:[["Проверяйте адрес","Вводите официальные адреса вручную или сохраняйте в закладки: фишинговых копий много."],["Включите 2FA","Используйте приложение-аутентификатор и никому не сообщайте сид-фразу."],["Изучайте сами","Правила и доступность зависят от страны. Это не финансовый совет."]],
+disc:"CryptoHub — информационный каталог. Размещение не является рекомендацией или финансовым советом. Криптовалюты волатильны и рискованны — проверяйте каждую платформу и местное законодательство."}};
+var S=[
+["FaucetPay","f","https://faucetpay.io","#7c3aed","#22d3ee",["Micro-wallet that receives instant, fee-free payouts from hundreds of partner faucets.","Micro-portefeuille recevant des paiements instantanés et sans frais de centaines de faucets partenaires.","Микрокошелёк для мгновенных выплат без комиссии от сотен партнёрских кранов."]],
+["FreeBitco.in","f","https://freebitco.in","#f59e0b","#ef4444",["Long-running Bitcoin faucet with hourly free rolls, games and an interest program.","Faucet Bitcoin historique avec tirages gratuits toutes les heures, jeux et programme d’intérêts.","Давний биткоин-кран с бесплатными розыгрышами каждый час, играми и программой процентов."]],
+["Cointiply","f","https://cointiply.com","#10b981","#3b82f6",["Earn Bitcoin by completing tasks, surveys, offers and watching videos.","Gagnez des bitcoins en réalisant des tâches, sondages, offres et vidéos.","Зарабатывайте биткоины за задания, опросы, офферы и просмотр видео."]],
+["FireFaucet","f","https://firefaucet.win","#ef4444","#f97316",["Multi-coin faucet with auto-claim, shortlinks and daily tasks paid via FaucetPay.","Faucet multi-cryptos avec réclamation automatique, liens courts et tâches quotidiennes via FaucetPay.","Мультимонетный кран с автосбором, короткими ссылками и ежедневными заданиями через FaucetPay."]],
+["Free-Litecoin","f","https://free-litecoin.com","#64748b","#06b6d4",["Claim free Litecoin at regular intervals with a simple, beginner-friendly interface.","Réclamez des Litecoin gratuits à intervalles réguliers avec une interface simple pour débutants.","Получайте бесплатные Litecoin через равные промежутки в простом интерфейсе для новичков."]],
+["Binance","e","https://www.binance.com","#f0b90b","#a16207",["World’s largest exchange by volume: spot, futures, staking and hundreds of assets.","Première plateforme mondiale par volume : spot, futures, staking et des centaines d’actifs.","Крупнейшая биржа по объёму: спот, фьючерсы, стейкинг и сотни активов."]],
+["Coinbase","e","https://www.coinbase.com","#2563eb","#1e3a8a",["US-listed, regulated exchange with a beginner-friendly app and strong compliance.","Plateforme cotée et régulée aux États-Unis, application simple pour débutants.","Регулируемая биржа, акции которой торгуются в США, с удобным приложением для новичков."]],
+["Kraken","e","https://www.kraken.com","#7c3aed","#4c1d95",["Veteran exchange known for security, deep liquidity and advanced trading tools.","Plateforme historique réputée pour sa sécurité, sa liquidité et ses outils avancés.","Опытная биржа, известная безопасностью, высокой ликвидностью и продвинутыми инструментами."]],
+["OKX","e","https://www.okx.com","#111827","#6b7280",["Global exchange with spot, derivatives, a Web3 wallet and copy trading.","Plateforme mondiale : spot, dérivés, portefeuille Web3 et copy trading.","Глобальная биржа: спот, деривативы, Web3-кошелёк и копитрейдинг."]],
+["Bybit","e","https://www.bybit.com","#f59e0b","#1f2937",["Derivatives-focused platform that also offers spot, earn products and a launchpad.","Plateforme axée sur les dérivés, avec spot, produits d’épargne et launchpad.","Площадка с упором на деривативы, а также спот, продукты earn и launchpad."]],
+["MetaMask","w","https://metamask.io","#f97316","#b45309",["Leading browser and mobile wallet for Ethereum, EVM networks and dApps.","Portefeuille navigateur et mobile de référence pour Ethereum, les réseaux EVM et les dApps.","Популярный браузерный и мобильный кошелёк для Ethereum, EVM-сетей и dApp."]],
+["Ledger","w","https://www.ledger.com","#0f172a","#475569",["Hardware wallets that keep private keys offline for maximum security.","Portefeuilles matériels gardant les clés privées hors ligne pour une sécurité maximale.","Аппаратные кошельки, хранящие приватные ключи офлайн для максимальной защиты."]],
+["Trust Wallet","w","https://trustwallet.com","#0ea5e9","#1d4ed8",["Self-custody mobile wallet supporting many blockchains, NFTs and staking.","Portefeuille mobile non-custodial multi-blockchains avec NFT et staking.","Некастодиальный мобильный кошелёк для множества блокчейнов, NFT и стейкинга."]],
+["Exodus","w","https://www.exodus.com","#8b5cf6","#ec4899",["Desktop and mobile wallet with a polished interface and built-in swaps.","Portefeuille bureau et mobile à l’interface soignée avec échanges intégrés.","Настольный и мобильный кошелёк с отточенным интерфейсом и встроенным обменом."]],
+["Phantom","w","https://phantom.app","#6d28d9","#a78bfa",["Popular Solana wallet, now multichain, with swaps, NFTs and staking.","Portefeuille Solana populaire, désormais multichaîne, avec swaps, NFT et staking.","Популярный кошелёк Solana, теперь мультичейн: обмен, NFT и стейкинг."]],
+["NiceHash","m","https://www.nicehash.com","#f59e0b","#16a34a",["Hashrate marketplace to sell your computing power or rent hashpower.","Place de marché de hashrate pour vendre ou louer de la puissance de calcul.","Маркетплейс хешрейта: продавайте мощности или арендуйте их."]],
+["F2Pool","m","https://www.f2pool.com","#0ea5e9","#312e81",["One of the oldest multi-coin mining pools, supporting BTC, LTC, ETC and more.","L’un des plus anciens pools de minage multi-cryptos : BTC, LTC, ETC et plus.","Один из старейших мультимонетных майнинг-пулов: BTC, LTC, ETC и другие."]],
+["Braiins Pool","m","https://braiins.com/pool","#f97316","#7f1d1d",["Formerly Slush Pool, the first Bitcoin pool, from the Braiins firmware team.","Ex-Slush Pool, premier pool Bitcoin, créé par l’équipe du firmware Braiins.","Бывший Slush Pool, первый биткоин-пул, от команды прошивки Braiins."]],
+["ViaBTC","m","https://www.viabtc.com","#14b8a6","#1e40af",["Multi-currency pool with cloud mining and a one-stop mining dashboard.","Pool multi-devises avec cloud mining et tableau de bord de minage unifié.","Мультивалютный пул с облачным майнингом и единой панелью управления."]],
+["Antpool","m","https://www.antpool.com","#dc2626","#7c2d12",["Mining pool operated by Bitmain, among the largest Bitcoin pools.","Pool exploité par Bitmain, parmi les plus grands pools Bitcoin.","Пул компании Bitmain, один из крупнейших биткоин-пулов."]]];
+var IC={f:'<path d="M12 3c3 4 6 7 6 10a6 6 0 0 1-12 0c0-3 3-6 6-10z"/>',e:'<path d="M4 8h14l-3-3M20 16H6l3 3"/>',w:'<path d="M3 7h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM3 7l2-3h12v3M16 14h2"/>',m:'<path d="M14 4l6 6M4 20l9-9M9 6c3-3 8-2 11 1-3-1-5 0-6 2z"/>'};
+var CC={f:["#7c3aed","#22d3ee"],e:["#f59e0b","#ef4444"],w:["#10b981","#3b82f6"],m:["#ec4899","#8b5cf6"]};
+var L="en",C="all",Q="";
+try{var sv=localStorage.getItem("ch-lang");if(sv&&T[sv])L=sv}catch(e){}
+function ico(k,cls){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" '+(cls||'')+'>'+IC[k]+'</svg>'}
+function art(s,i){var g="g"+i,o='';for(var j=0;j<5;j++)o+='<circle cx="'+(40+j*85)+'" cy="'+(30+(j*53)%160)+'" r="'+(6+j*5)+'" fill="#fff" opacity=".07"/>';
+return '<svg class="art" viewBox="0 0 400 200" role="img" aria-label="'+s[0]+'"><defs><linearGradient id="'+g+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+s[3]+'"/><stop offset="1" stop-color="'+s[4]+'"/></linearGradient><pattern id="p'+i+'" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0v24" fill="none" stroke="#fff" stroke-opacity=".08"/></pattern></defs><rect width="400" height="200" fill="url(#'+g+')"/><rect width="400" height="200" fill="url(#p'+i+')"/>'+o+'<circle cx="200" cy="84" r="42" fill="#fff" fill-opacity=".18" stroke="#fff" stroke-opacity=".5" stroke-width="2"/><text x="200" y="99" text-anchor="middle" font-family="system-ui,sans-serif" font-size="44" font-weight="800" fill="#fff">'+s[0].charAt(0)+'</text><text x="200" y="168" text-anchor="middle" font-family="system-ui,sans-serif" font-size="24" font-weight="700" fill="#fff">'+s[0]+'</text></svg>'}
+function esc(x){return x.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function render(){var t=T[L],li=["en","fr","ru"].indexOf(L);document.documentElement.lang=L;
+document.querySelectorAll("[data-t]").forEach(function(e){e.textContent=t[e.dataset.t]});
+document.querySelector("[data-h]").innerHTML=t.title;document.getElementById("q").placeholder=t.ph;
+document.querySelectorAll("#lang button").forEach(function(b){b.classList.toggle("on",b.dataset.l===L)});
+var ks=["f","e","w","m"];
+document.getElementById("cats").innerHTML=ks.map(function(k){return '<button class="cat" data-c="'+k+'">'+ico(k,'style="background:linear-gradient(135deg,'+CC[k][0]+','+CC[k][1]+')"')+'<h3>'+t.cat[k][0]+'</h3><p>'+t.cat[k][1]+'</p></button>'}).join("");
+document.getElementById("tabs").innerHTML=['all'].concat(ks).map(function(k){return '<button data-c="'+k+'" class="'+(k===C?'on':'')+'">'+(k==='all'?t.all:t.cat[k][0])+'</button>'}).join("");
+document.getElementById("safeG").innerHTML=t.sf.map(function(x,n){return '<div><b>'+['🔗','🔐','🔍'][n]+' '+x[0]+'</b><span>'+x[1]+'</span></div>'}).join("");
+var q=Q.toLowerCase(),h=S.map(function(s,i){return[s,i]}).filter(function(p){var s=p[0];return(C==='all'||s[1]===C)&&(!q||(s[0]+s[5][li]).toLowerCase().indexOf(q)>-1)}).map(function(p){var s=p[0];
+return '<article class="card">'+art(s,p[1])+'<div class="cb"><span class="tag">'+t.cat[s[1]][0]+'</span><h3>'+esc(s[0])+'</h3><p>'+esc(s[5][li])+'</p><a class="btn" href="'+s[2]+'" target="_blank" rel="noopener noreferrer nofollow">'+t.visit+' ↗</a></div></article>'}).join("");
+document.getElementById("grid").innerHTML=h||'<p class="none">'+t.none+'</p>'}
+document.addEventListener("click",function(e){var b=e.target.closest("[data-c]"),l=e.target.closest("[data-l]");
+if(b){C=b.dataset.c;render();if(b.classList.contains("cat"))document.getElementById("dir").scrollIntoView()}
+if(l){L=l.dataset.l;try{localStorage.setItem("ch-lang",L)}catch(x){}render()}});
+document.getElementById("q").addEventListener("input",function(e){Q=e.target.value;render()});
+render();
+</script></body></html>
